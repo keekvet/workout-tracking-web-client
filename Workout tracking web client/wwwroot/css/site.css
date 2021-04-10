@@ -5,7 +5,6 @@
     border-color: black;
 }
 
-.login-form{}
 .login-form input{
     margin: 8px;
 }
@@ -14,10 +13,6 @@
 input {
     border-color: black;
     background-color: plum;
-}
-
-header h1{
-    text-align: center;
 }
 
 body{

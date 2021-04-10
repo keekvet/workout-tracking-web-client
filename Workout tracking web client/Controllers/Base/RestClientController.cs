@@ -10,7 +10,7 @@ namespace Workout_tracking_web_client.Controllers
 {
     public class RestClientController : Controller
     {
-        IHttpClientService httpClientService;
+        protected readonly IHttpClientService httpClientService;
 
         public RestClientController(IHttpClientService httpClientService)
         {

@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Workout_tracking_web_client.Filters;
 
 namespace Workout_tracking_web_client
 {
@@ -23,9 +24,11 @@ namespace Workout_tracking_web_client
 
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDistributedMemoryCache();
             services.AddSession();
 
+            services.AddConfigurations(Configuration);
             services.AddServices();
 
             services.AddControllersWithViews();

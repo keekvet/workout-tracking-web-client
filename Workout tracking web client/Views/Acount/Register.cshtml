@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["title"] = "Register";
+    Layout = "_Layout";
+}
+
+@section Header {
+}
+
+@{await Html.RenderPartialAsync("AcountHeader"); }
+
+<h1 class="text-center">Register</h1>
+<div class="text-center">
+    <form class="login-form" method="post">
+        <input type="text" name="Name" /> <br />
+        <input type="password" name="Password" /> <br />
+        <input type="password" name="ConfirmPassword" /> <br />
+        <input type="submit" value="register" />
+    </form>
+</div>

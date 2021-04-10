@@ -23,7 +23,11 @@ namespace Workout_tracking_web_client.Services.Implementations
         public RestClient NewInstance(string jwtToken)
         {
             RestClient client = new RestClient(connectionStringsConfiguration.Value.ApiServer);
-            client.Authenticator = new JwtAuthenticator(jwtToken);
+            
+            if(jwtToken is not null)
+                client.Authenticator = new JwtAuthenticator(jwtToken);
+            
+            client.UseJson();
             
             return client;
         }

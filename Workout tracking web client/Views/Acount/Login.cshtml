@@ -4,15 +4,15 @@
 }
 
 @section Header {
-    <header>
-        <h1>login</h1>
-    </header>
 }
 
+@{await Html.RenderPartialAsync("AcountHeader"); }
+
+<h1 class="text-center">login</h1>
 <div class="text-center">
     <form class="login-form" method="post">
-        <input type="text" name="name"/> <br />
-        <input type="password" name="password"/> <br />
-        <input type="submit" value="Login"/>
+        <input type="text" name="Name"/> <br />
+        <input type="password" name="Password"/> <br />
+        <input type="submit" value="login"/>
     </form>
 </div>
