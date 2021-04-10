@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workout tracking web client", "Workout tracking web client\Workout tracking web client.csproj", "{8E2BE685-74E8-4903-A084-3D5AC4B0F328}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8E2BE685-74E8-4903-A084-3D5AC4B0F328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E2BE685-74E8-4903-A084-3D5AC4B0F328}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E2BE685-74E8-4903-A084-3D5AC4B0F328}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E2BE685-74E8-4903-A084-3D5AC4B0F328}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E10A8654-7612-4A27-B116-AD405222DC9C}
+	EndGlobalSection
+EndGlobal

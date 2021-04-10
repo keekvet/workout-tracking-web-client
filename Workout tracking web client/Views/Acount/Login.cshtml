@@ -1,0 +1,18 @@
+﻿@{ 
+    ViewData["title"] = "Login";
+    Layout = "_Layout";
+}
+
+@section Header {
+    <header>
+        <h1>login</h1>
+    </header>
+}
+
+<div class="text-center">
+    <form class="login-form" method="post">
+        <input type="text" name="name"/> <br />
+        <input type="password" name="password"/> <br />
+        <input type="submit" value="Login"/>
+    </form>
+</div>
