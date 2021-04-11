@@ -1,6 +1,6 @@
-﻿@{
+﻿@model RegisterModel;
+@{
     ViewData["title"] = "Register";
-    Layout = "_Layout";
 }
 
 @section Header {
@@ -10,10 +10,13 @@
 
 <h1 class="text-center">Register</h1>
 <div class="text-center">
-    <form class="login-form" method="post">
-        <input type="text" name="Name" /> <br />
-        <input type="password" name="Password" /> <br />
-        <input type="password" name="ConfirmPassword" /> <br />
+    <form asp-controller="acout" asp-action="register">
+        <input type="text" asp-for="Name" /><br />
+        <br />
+        <input type="password" asp-for="Password" /><br />
+        <br />
+        <input type="password" asp-for="PasswordConfirmation" /><br />
+        <br />
         <input type="submit" value="register" />
     </form>
 </div>

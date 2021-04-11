@@ -1,18 +1,23 @@
-﻿@{ 
+﻿@model LoginModel
+
+@{
     ViewData["title"] = "Login";
-    Layout = "_Layout";
 }
 
-@section Header {
-}
+@section Header {}
 
 @{await Html.RenderPartialAsync("AcountHeader"); }
 
 <h1 class="text-center">login</h1>
-<div class="text-center">
-    <form class="login-form" method="post">
-        <input type="text" name="Name"/> <br />
-        <input type="password" name="Password"/> <br />
-        <input type="submit" value="login"/>
+<div class="text-center p-3">
+    @ViewData["Message"]<br />
+
+    <form asp-controller="acount" asp-action="login">
+        <input type="text" asp-for="Name" /><br />
+        <br />
+        <input type="password" asp-for="Password" /><br />
+        <br />
+        <input type="submit" value="login" />
     </form>
+
 </div>

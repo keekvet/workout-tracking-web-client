@@ -1,0 +1,46 @@
+﻿
+@{
+    string userName = Context.Session.GetString("userName");
+    string profileUserName = ViewData["profileUserName"].ToString();
+
+    ViewData["title"] = profileUserName;
+
+    List<(string clazz, string controller, string action, string text)> userRelations =
+        new List<(string, string, string, string)>
+    {
+        ( "h3 p-3", "friend", "friend", "friend" ),
+        ( "h3 p-3", "follower", "follower", "follower" ),
+        ( "h3 p-3", "following", "following", "following" )
+            };
+
+    List<(string clazz, string controller, string action, string text)> userProfileActions =
+        new List<(string, string, string, string)>
+    {
+        ( "h3 p-3", "friendRequest", "friendRequest", "friend request" ),
+        ( "h3 p-3", "user", "update", "edit" )
+    };
+
+}
+
+<div class="row">
+    <div class="col-md-9">
+        <h1 class="text-center">@profileUserName</h1>
+    </div>
+    <div class="col-md-3 side-and-low-border text-center">
+        @foreach (var item in userRelations)
+        {
+            <p>
+                <a class=@item.clazz asp-controller=@item.controller asp-action=@item.action>@item.text</a>
+            </p>
+        }
+        @if (userName.Equals(profileUserName))
+        {
+            @foreach (var item in userProfileActions)
+            {
+                <p>
+                    <a class=@item.clazz asp-controller=@item.controller asp-action=@item.action>@item.text</a>
+                </p>
+            }
+        }
+    </div>
+</div>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,11 @@ namespace Workout_tracking_web_client.Controllers
         {
         }
 
-
+        [HttpGet("user/{userName}")]
+        public IActionResult Profile(string userName)
+        {
+            ViewData["profileUserName"] = userName;
+            return View();
+        }
     }
 }

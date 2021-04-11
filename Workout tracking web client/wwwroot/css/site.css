@@ -5,23 +5,42 @@
     border-color: black;
 }
 
+.side-border{
+    border: solid;
+    border-width: 0px 1px 0px 1px;
+    border-color: black;
+}
+
+.side-and-low-border {
+    border: solid;
+    border-width: 0px 1px 1px 1px;
+    border-color: black;
+}
+
+
 .login-form input{
     margin: 8px;
 }
 
+.text-undecorated{
+    text-decoration: none;
+    color: black;
+}
 
 input {
     border-color: black;
-    background-color: plum;
+    background-color: peachpuff;
 }
 
-body{
-    background-color: plum;
+body {
+    background-color: peachpuff;
 }
 
-a{
+a {
     text-decoration: underline;
     color: black;
+    font-weight: 500;
+    line-height: 1.2;
 }
 
 a:hover{

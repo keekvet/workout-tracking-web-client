@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿
+@{
+    string userName = Context.Session.GetString("userName");
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,18 +14,30 @@
 </head>
 <body>
 
-    @{
-        if (IsSectionDefined("Header"))
-        {
-            RenderSection("Header");
-        }
-        else
-        {
-            
-        }
+
+    @if (IsSectionDefined("Header"))
+    {
+        RenderSection("Header");
+    }
+    else
+    {
+        <header class="container-fluid low-border">
+            <table>
+                <tr>
+                    <td class="side-border h3 p-3">
+                        <a asp-controller="search" asp-action="search">search</a>
+                    </td>
+                    <td class="side-border h3 p-3">
+                        <a asp-controller="training" asp-action="training">training</a>
+                    </td>
+                </tr>
+                <a class="side-border h3 p-3 float-right mb-0" asp-controller="user" asp-action="@userName">@userName</a>
+            </table>
+        </header>
     }
 
-    <main>
+
+    <main class="container-fluid">
         @RenderBody()
     </main>
 
