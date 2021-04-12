@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,8 @@ namespace Workout_tracking_web_client.Controllers
     [AccessTokenFilter]
     public class UserController : RestClientController
     {
-        public UserController(IHttpClientService httpClientService) : base(httpClientService)
+        public UserController(IHttpClientService httpClientService, IHttpContextAccessor context) :
+            base(httpClientService, context)
         {
         }
 

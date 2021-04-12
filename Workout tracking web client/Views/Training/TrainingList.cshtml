@@ -1,0 +1,28 @@
+﻿@model IEnumerable<TrainingTemplateDto>
+@{
+    ViewData["title"] = "training";
+}
+
+<div class="row">
+    <div class="col-md-9 p-0">
+        <h1 class="text-center">Training</h1>
+        @foreach (var training in Model)
+        {
+            <div class="low-border w-100 m-0 row">
+                <div class="col-md-9 p-3" >
+                    <a class="h3" asp-controller="training" asp-action="@training.Id">@training.Name</a>
+                    <p>
+                        @training.Description
+                    </p>
+                </div>
+                <div class="col-md-3">
+                    <a class="h3 float-right p-3 round-border" asp-controller="training" asp-action="@training.Id">edit</a>
+                    <a class="h3 float-right p-3 round-border" asp-controller="training" asp-action="@training.Id">delete</a>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-md-3 side-and-low-border text-center">
+        <a class="h3 p-3" asp-controller="training" asp-action="add">add</a>
+    </div>
+</div>

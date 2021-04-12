@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Workout_tracking_web_client</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -28,7 +28,7 @@
                         <a asp-controller="search" asp-action="search">search</a>
                     </td>
                     <td class="side-border h3 p-3">
-                        <a asp-controller="training" asp-action="training">training</a>
+                        <a asp-controller="training" asp-action="all">training</a>
                     </td>
                 </tr>
                 <a class="side-border h3 p-3 float-right mb-0" asp-controller="user" asp-action="@userName">@userName</a>

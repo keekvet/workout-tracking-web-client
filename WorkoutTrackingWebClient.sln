@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workout tracking web client", "Workout tracking web client\Workout tracking web client.csproj", "{8E2BE685-74E8-4903-A084-3D5AC4B0F328}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Workout tracking web client", "Workout tracking web client\Workout tracking web client.csproj", "{8E2BE685-74E8-4903-A084-3D5AC4B0F328}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Workout-tracking-models", "..\Workout-tracking-models\Workout-tracking-models\Workout-tracking-models.csproj", "{C3B48EF6-2B54-4804-8B2E-BF683124888A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{8E2BE685-74E8-4903-A084-3D5AC4B0F328}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E2BE685-74E8-4903-A084-3D5AC4B0F328}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E2BE685-74E8-4903-A084-3D5AC4B0F328}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3B48EF6-2B54-4804-8B2E-BF683124888A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3B48EF6-2B54-4804-8B2E-BF683124888A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3B48EF6-2B54-4804-8B2E-BF683124888A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3B48EF6-2B54-4804-8B2E-BF683124888A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

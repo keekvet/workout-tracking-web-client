@@ -17,6 +17,11 @@
     border-color: black;
 }
 
+.round-border {
+    border: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: black;
+}
 
 .login-form input{
     margin: 8px;

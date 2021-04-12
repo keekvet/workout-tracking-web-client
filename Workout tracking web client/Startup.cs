@@ -5,11 +5,13 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using FluentValidation.AspNetCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Workout_tracking_web_client.Filters;
+using WorkoutTracking.Application.Validators;
 
 namespace Workout_tracking_web_client
 {
@@ -31,7 +33,11 @@ namespace Workout_tracking_web_client
             services.AddConfigurations(Configuration);
             services.AddServices();
 
-            services.AddControllersWithViews();
+            services.AddHttpContextAccessor();
+            
+            services.AddControllersWithViews(opt => opt.Filters.Add(new ExceptionFilter()))
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UserLoginValidator>());
+            ;
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

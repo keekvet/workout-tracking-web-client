@@ -17,6 +17,8 @@ namespace Workout_tracking_web_client
         {
             services.AddSingleton<IHttpClientService, HttpClientService>();
 
+            services.AddScoped<ITrainingCategoryService, TrainingCategoryService>();
+
             return services;
         }
 

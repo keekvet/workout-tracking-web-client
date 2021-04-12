@@ -1,6 +1,6 @@
-﻿@model RegisterModel;
+﻿@model UserRegisterModel;
 @{
-    ViewData["title"] = "Register";
+    ViewData["title"] = "register";
 }
 
 @section Header {
@@ -11,11 +11,12 @@
 <h1 class="text-center">Register</h1>
 <div class="text-center">
     <form asp-controller="acout" asp-action="register">
-        <input type="text" asp-for="Name" /><br />
-        <br />
-        <input type="password" asp-for="Password" /><br />
-        <br />
-        <input type="password" asp-for="PasswordConfirmation" /><br />
+        <span asp-validation-for="Name"></span><br />
+        <input type="text" asp-for="Name" placeholder="username"/><br />
+        <span asp-validation-for="Password"></span><br />
+        <input type="password" asp-for="Password" placeholder="password"/><br />
+        <span asp-validation-for="PasswordConfirmation"></span><br />
+        <input type="password" asp-for="PasswordConfirmation" placeholder="password"/><br />
         <br />
         <input type="submit" value="register" />
     </form>
