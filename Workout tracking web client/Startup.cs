@@ -34,10 +34,11 @@ namespace Workout_tracking_web_client
             services.AddServices();
 
             services.AddHttpContextAccessor();
-            
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddControllersWithViews(opt => opt.Filters.Add(new ExceptionFilter()))
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UserLoginValidator>());
-            ;
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

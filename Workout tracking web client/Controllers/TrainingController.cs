@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RestSharp;
 using System;
@@ -19,14 +20,17 @@ namespace Workout_tracking_web_client.Controllers
     [Route("training")]
     public class TrainingController : RestClientController
     {
+        private readonly IMapper mapper;
         private readonly ITrainingCategoryService trainingCategoryService;
 
         public TrainingController(
+            IMapper mapper,
             IHttpContextAccessor context,
             IHttpClientService httpClientService,
             ITrainingCategoryService trainingCategoryService)
             : base(httpClientService, context) 
         {
+            this.mapper = mapper;
             this.trainingCategoryService = trainingCategoryService;
         }
 
@@ -84,11 +88,13 @@ namespace Workout_tracking_web_client.Controllers
         [HttpPost("add")]
         public async Task<IActionResult> AddTraining(TrainingTemplateModel model)
         {
-            ViewBag.Categories = await trainingCategoryService.GetTrainingCategoriesAsync(
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Categories = await trainingCategoryService.GetTrainingCategoriesAsync(
                 httpClientService.NewInstance(token));
 
-            if (!ModelState.IsValid)
                 return View();
+            }
 
             RestRequest request = new RestRequest("training-template/add", Method.POST);
             request.AddJsonBody(model);
@@ -103,7 +109,103 @@ namespace Workout_tracking_web_client.Controllers
                 return View();
             }
 
-            return Redirect("~/training/" + response.Data.Id);
+            return Redirect(response.Data.Id.ToString());
+        }
+
+        [HttpGet("update/{id}")]
+        public async Task<IActionResult> UpdateTraining(int id)
+        {
+            RestRequest request = new RestRequest("training-template/id/" + id, Method.GET);
+
+            IRestResponse<TrainingTemplateDto> response =
+                await httpClientService.NewInstance(token)
+                .ExecuteWithTimeoutExceptionAsync<TrainingTemplateDto>(request);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                ViewData["Message"] = "training doesn't exist";
+                return View();
+            }
+
+            ViewBag.Categories = await trainingCategoryService.GetTrainingCategoriesAsync(
+                httpClientService.NewInstance(token));
+
+            ViewBag.Exercises = response.Data.Exercises;
+
+            return View(mapper.Map<TrainingTemplateDto, TrainingTemplateUpdateModel>(response.Data));
+        }
+
+        [HttpPost("update")]
+        public async Task<IActionResult> UpdateTraining(TrainingTemplateUpdateModel model)
+        {
+            RestRequest request;
+            IRestResponse<TrainingTemplateDto> response;
+
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Categories = await trainingCategoryService.GetTrainingCategoriesAsync(
+                httpClientService.NewInstance(token));
+
+                request = new RestRequest("training-template/id/" + model.Id, Method.GET);
+
+                response = await httpClientService.NewInstance(token)
+                    .ExecuteWithTimeoutExceptionAsync<TrainingTemplateDto>(request);
+
+                ViewBag.Exercises = response.Data.Exercises;
+
+                return View(model);
+            }
+
+            request = new RestRequest("training-template/update", Method.PUT);
+            request.AddJsonBody(model);
+
+            response = await httpClientService.NewInstance(token)
+                .ExecuteWithTimeoutExceptionAsync<TrainingTemplateDto>(request);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                ViewData["Message"] = "invalid data";
+                return Redirect("update/" + model.Id );
+            }
+
+            return Redirect("update/" + response.Data.Id);
+
+        }
+
+        [HttpGet("delete/{id}")]
+        public async Task<IActionResult> DeleteTraining(int id)
+        {
+            RestRequest request = new RestRequest("training-template/remove", Method.DELETE);
+            request.AddJsonBody(id);
+
+            IRestResponse<bool> response =
+                await httpClientService.NewInstance(token)
+                .ExecuteWithTimeoutExceptionAsync<bool>(request);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                ViewData["Message"] = "invalid data";
+
+            return Redirect("~/training/all");
+        }
+
+
+        [HttpGet("clone/{id}")]
+        public async Task<IActionResult> CloneTraining(int id)
+        {
+            RestRequest request = new RestRequest("training-template/clone", Method.POST);
+            request.AddJsonBody(id);
+
+            IRestResponse<TrainingTemplateDto> response =
+                await httpClientService.NewInstance(token)
+                .ExecuteWithTimeoutExceptionAsync<TrainingTemplateDto>(request);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                ViewData["Message"] = "invalid data";
+                return View();
+            }
+
+            return Redirect("~/training/all");
         }
     }
 }

@@ -1,0 +1,29 @@
+﻿
+@model ExerciseModel
+@{
+    ViewData["title"] = "add exercise";
+}
+
+<div class="text-center">
+    <h1>new exercise</h1>
+    <form asp-controller="exercise" asp-action="add-model" method="post">
+        name<br />
+        <span asp-validation-for="Name"></span><br />
+        <input asp-for="Name" placeholder="name" /><br />
+        <br />
+
+        note<br />
+        <span asp-validation-for="Note"></span><br />
+        <textarea asp-for="Note" placeholder="note" ></textarea><br />
+        <br />
+
+        exercise position<br />
+        <span asp-validation-for="Position"></span><br />
+        <input asp-for="Position" /><br />
+        <br />
+
+        <input type="hidden" asp-for="TrainingTemplateId" />
+
+        <input type="submit" value="add" />
+    </form>
+</div>

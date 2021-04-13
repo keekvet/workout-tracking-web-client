@@ -6,16 +6,22 @@
 <div class="text-center">
     <h1>new training</h1>
     <form asp-controller="training" asp-action="add" method="post">
+        
+        name<br />
         <span asp-validation-for="Name"></span><br />
         <input asp-for="Name" placeholder="name" /><br />
+        <br />
 
-        <span asp-validation-for="Description"></span><br />
-        <input asp-for="Description" placeholder="description" /><br />
-
+        category<br />
         <span asp-validation-for="CategoryId"></span><br />
         <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))">
             <option selected="selected" disabled="disabled">select category</option>
         </select><br />
+        <br />
+
+        descriptoin<br />
+        <span asp-validation-for="Description"></span><br />
+        <textarea asp-for="Description" placeholder="description"></textarea><br />
         <br />
         <input type="submit" value="add" />
     </form>

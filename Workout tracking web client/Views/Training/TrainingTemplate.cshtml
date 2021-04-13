@@ -1,11 +1,63 @@
-﻿@{ 
+﻿@{
     ViewData["title"] = "training";
 }
 @model TrainingTemplateDto
 
-<div class="text-center">
-    <h1>@Model.Name</h1>
-    <p>
-        @Model.Description
-    </p>
+
+<div class="row">
+    <div class="col-md-9 p-0">
+        <div>
+            <div class="text-center low-border m-0 p-0">
+                <h1>@Model.Name</h1>
+                <p class="h3">category: @Model.Category.Name</p>
+                <p>
+                    @Model.Description
+                </p>
+            </div>
+            @foreach (var exercise in Model.Exercises.OrderBy(e => e.Position))
+            {
+                <div class="low-border p-0 m-0 w-100 row">
+                    <div class="col-md-8">
+                        <p class="h3">
+                            @exercise.Name
+                        </p>
+                        @exercise.Note
+                    </div>
+                    <div class="col-md-4 side-border float-right p-0 text-center">
+                        @foreach (var set in exercise.Properties)
+                        {
+                            <div class="low-border">
+                                @set.Duration @set.DurationType.ToLower()
+                                @if (set.Weight != 0)
+                                {
+                                    <span> | weight @set.Weight</span>
+                                }
+                            </div>
+                        }
+                        
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+    <div class="col-md-3 side-and-low-border text-center">
+        <br />
+
+        <a class="h3 p-3" asp-controller="exercise"
+           asp-action="add" asp-route-templateid="@Model.Id">add exercise</a><br />
+        <br />
+
+        <a class="h3 p-3" asp-controller="training"
+           asp-action="update" asp-route-id="@Model.Id">edit</a><br />
+        <br />
+
+        <a class="h3 p-3" asp-controller="training"
+           asp-action="clone" asp-route-id="@Model.Id">clone</a><br />
+        <br />
+
+        <a class="h3 p-3" asp-controller="training"
+           asp-action="delete" asp-route-id="@Model.Id">delete</a><br />
+        <br />
+    </div>
 </div>

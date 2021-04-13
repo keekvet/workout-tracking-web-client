@@ -13,11 +13,14 @@
     @ViewData["Message"]<br />
 
     <form asp-controller="acount" asp-action="login">
+
         <span asp-validation-for="Name"></span><br />
         <input type="text" asp-for="Name" placeholder="username"/><br />
+        
         <span asp-validation-for="Password"></span><br />
         <input type="password" asp-for="Password" placeholder="password"/><br />
         <br />
+        
         <input type="submit" value="login" />
     </form>
 

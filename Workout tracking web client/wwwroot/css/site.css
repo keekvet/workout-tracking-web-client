@@ -1,11 +1,11 @@
 ﻿
-.low-border{
+.low-border {
     border: solid;
     border-width: 0px 0px 1px 0px;
     border-color: black;
 }
 
-.side-border{
+.side-border {
     border: solid;
     border-width: 0px 1px 0px 1px;
     border-color: black;
@@ -23,18 +23,19 @@
     border-color: black;
 }
 
-.login-form input{
+.login-form input {
     margin: 8px;
 }
 
-.text-undecorated{
+.text-undecorated {
     text-decoration: none;
     color: black;
 }
 
-input {
+select, input, textarea {
+    border: 1px;
     border-color: black;
-    background-color: peachpuff;
+    width: 300px;
 }
 
 body {
@@ -48,6 +49,15 @@ a {
     line-height: 1.2;
 }
 
-a:hover{
+.link-look {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a:hover, .link-look:hover {
     color: darkslategrey;
 }

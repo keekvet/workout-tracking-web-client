@@ -18,7 +18,6 @@ namespace WorkoutTracking.Application.Validators
                 .MaximumLength(50);
 
             RuleFor(e => e.Note)
-                .NotEmpty()
                 .MaximumLength(500);
 
             RuleFor(e => e.TrainingTemplateId)

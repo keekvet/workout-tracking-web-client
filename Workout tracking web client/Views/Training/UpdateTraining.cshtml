@@ -1,0 +1,99 @@
+﻿@model TrainingTemplateUpdateModel
+@{
+    ViewData["title"] = "edit training";
+    IEnumerable<ExerciseDto> exercises = ViewBag.Exercises;
+}
+
+<div class="text-center">
+    <h1>edit training</h1>
+    <form class="p-3 low-border" asp-controller="training" asp-action="update" method="post">
+
+        <input type="hidden" asp-for="Id" />
+
+        name<br />
+        <span asp-validation-for="Name"></span><br />
+        <input asp-for="Name" placeholder="name" /><br />
+        <br />
+
+        category<br />
+        <span asp-validation-for="CategoryId"></span><br />
+        <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))">
+            <option selected="selected" disabled="disabled">select category</option>
+        </select><br />
+        <br />
+
+        description<br />
+        <span asp-validation-for="Description"></span><br />
+        <textarea asp-for="Description" placeholder="description"></textarea><br />
+        <br />
+
+        <input type="submit" value="update" />
+    </form>
+
+    <h1 class="p-3">exercise</h1>
+
+    <a class="h3 p-3" asp-controller="exercise"
+       asp-action="add" asp-route-templateid="@Model.Id">add exercise</a><br />
+    <br />
+
+    @foreach (var exercise in exercises.OrderBy(e => e.Position))
+    {
+        <div class="round-border p-0 m-0 w-100 row">
+            <div class="col-md-4">
+                <p class="h3">
+                    @exercise.Name
+                </p>
+                @exercise.Note
+            </div>
+            <div class="col-md-4">
+                <a class="h4 p-3" asp-controller="exercise"
+                   asp-action="update" asp-route-id="@exercise.Id">edit</a>
+
+                <a class="h4 p-3" asp-controller="exercise" asp-action="delete" 
+                   asp-all-route-data='new Dictionary<string, string>() {
+                        { "templateId", Model.Id.ToString() },
+                        { "id", exercise.Id.ToString()}
+                    }'>delete</a>
+            </div>
+
+            <div class="col-md-4 side-border text-center">
+
+                @foreach (var set in exercise.Properties)
+                {
+                    <div class="low-border row">
+                        <div class="col-md-6 p-0">
+                            @set.Duration @set.DurationType.ToLower()
+                            @if (set.Weight != 0)
+                            {
+                                <span> | weight @set.Weight</span>
+                            }
+                        </div>
+                        <div class="col-md-6 p-0">
+                            <a class="h6 p-3" asp-controller="exercise-property" asp-action="update"
+                               asp-all-route-data='new Dictionary<string, string>() {
+                                    { "templateId", Model.Id.ToString() },
+                                    { "id", set.Id.ToString()}
+                               }'>edit</a>
+
+                            <a class="h6 p-3" asp-controller="exercise-property" asp-action="delete"
+                               asp-all-route-data='new Dictionary<string, string>() {
+                                    { "templateId", Model.Id.ToString() },
+                                    { "id", set.Id.ToString()}
+                               }'>delete</a>
+
+                        </div>
+                    </div>
+                }
+
+
+                <a class="h6" asp-controller="exercise-property" asp-action="add"
+                   asp-all-route-data='new Dictionary<string, string>() {
+                        { "templateId", Model.Id.ToString() },
+                        { "exerciseId", exercise.Id.ToString()}
+                   }'>add set</a>
+
+
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,29 @@
+﻿
+@model ExerciseUpdateModel
+@{
+    ViewData["title"] = "edit exercise";
+}
+
+<div class="text-center">
+    <h1>edit exercise</h1>
+    <form asp-controller="exercise" asp-action="update" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        name<br />
+        <span asp-validation-for="Name"></span><br />
+        <input asp-for="Name" placeholder="name" /><br />
+        <br />
+
+        note<br />
+        <span asp-validation-for="Note"></span><br />
+        <textarea asp-for="Note" placeholder="note" ></textarea><br />
+        <br />
+
+        exercise position<br />
+        <span asp-validation-for="Position"></span><br />
+        <input asp-for="Position" /><br />
+        <br />
+
+        <input type="submit" value="update" />
+    </form>
+</div>

@@ -1,0 +1,34 @@
+﻿
+@model ExercisePropertyViewModel
+@{
+    ViewData["title"] = "add exercise property";
+}
+
+<div class="text-center">
+    <h1>new property</h1>
+    <form asp-controller="exercise-property" asp-action="add-model" method="post">
+        
+        <input type="hidden" asp-for="ExerciseId" />
+        <input type="hidden" asp-for="TrainingTemplateId" />
+
+        duration<br />
+        <span asp-validation-for="Duration"></span><br />
+        <input class="pr-3" asp-for="Duration" /><br />
+        <br />
+
+        <span asp-validation-for="DurationType"></span><br />
+        <select asp-for="DurationType">
+            <option selected="selected" value="repeat">repeat</option>
+            <option value="second">second</option>
+            <option value="minute">minute</option>
+            <option value="hour">hour</option>
+        </select><br />
+
+        <br />
+        weight (optional)<br />
+        <input asp-for="Weight" /><br />
+        <br />
+
+        <input type="submit" value="add" />
+        </form>
+</div>

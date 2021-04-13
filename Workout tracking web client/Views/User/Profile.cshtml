@@ -11,14 +11,14 @@
         ( "h3 p-3", "friend", "friend", "friend" ),
         ( "h3 p-3", "follower", "follower", "follower" ),
         ( "h3 p-3", "following", "following", "following" )
-            };
+                                    };
 
     List<(string clazz, string controller, string action, string text)> userProfileActions =
         new List<(string, string, string, string)>
     {
         ( "h3 p-3", "friendRequest", "friendRequest", "friend request" ),
         ( "h3 p-3", "user", "update", "edit" )
-    };
+                            };
 
 }
 
@@ -27,19 +27,20 @@
         <h1 class="text-center">@profileUserName</h1>
     </div>
     <div class="col-md-3 side-and-low-border text-center">
+        <br />
         @foreach (var item in userRelations)
         {
-            <p>
-                <a class=@item.clazz asp-controller=@item.controller asp-action=@item.action>@item.text</a>
-            </p>
+
+            <a class=@item.clazz asp-controller=@item.controller asp-action=@item.action>@item.text</a><br />
+            <br />
+
         }
         @if (userName.Equals(profileUserName))
         {
             @foreach (var item in userProfileActions)
             {
-                <p>
-                    <a class=@item.clazz asp-controller=@item.controller asp-action=@item.action>@item.text</a>
-                </p>
+                <a class=@item.clazz asp-controller=@item.controller asp-action=@item.action>@item.text</a><br />
+                <br />
             }
         }
     </div>

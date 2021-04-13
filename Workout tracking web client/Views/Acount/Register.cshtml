@@ -10,14 +10,17 @@
 
 <h1 class="text-center">Register</h1>
 <div class="text-center">
-    <form asp-controller="acout" asp-action="register">
+    <form asp-controller="acount" asp-action="register">
         <span asp-validation-for="Name"></span><br />
         <input type="text" asp-for="Name" placeholder="username"/><br />
+        
         <span asp-validation-for="Password"></span><br />
         <input type="password" asp-for="Password" placeholder="password"/><br />
+        
         <span asp-validation-for="PasswordConfirmation"></span><br />
         <input type="password" asp-for="PasswordConfirmation" placeholder="password"/><br />
         <br />
+        
         <input type="submit" value="register" />
     </form>
 </div>

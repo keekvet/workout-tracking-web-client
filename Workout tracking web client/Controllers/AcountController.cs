@@ -38,10 +38,8 @@ namespace Workout_tracking_web_client.Controllers
             request.AddJsonBody(model);
 
             IRestResponse<UserTokenDto> response = 
-                await httpClientService.NewInstance(null).ExecuteWithTimeoutExceptionAsync<UserTokenDto>(request);
+                await httpClientService.NewInstance(null).ExecuteAsync<UserTokenDto>(request);
 
-            if (!response.IsSuccessful)
-                throw new ApiConnectionException();
 
             switch (response.StatusCode)
             {
@@ -53,11 +51,14 @@ namespace Workout_tracking_web_client.Controllers
                 case HttpStatusCode.Unauthorized:
                 case HttpStatusCode.BadRequest:
                     ViewData["Message"] = "wrong credentials";
-                    break;
+                    return View();
                 default:
                     break;
             }
 
+            if (!response.IsSuccessful)
+                throw new ApiConnectionException();
+            
             return View();
         }
 
@@ -77,13 +78,17 @@ namespace Workout_tracking_web_client.Controllers
             request.AddJsonBody(model);
 
             IRestResponse<UserDto> response = 
-                await httpClientService.NewInstance(null).ExecuteWithTimeoutExceptionAsync<UserDto>(request);
+                await httpClientService.NewInstance(null).ExecuteAsync<UserDto>(request);
 
             if (response.StatusCode == HttpStatusCode.Unauthorized)
             {
                 ViewBag["Message"] = response.GetErrorMessage();
                 return View();
             }
+
+            if (!response.IsSuccessful)
+                throw new ApiConnectionException();
+
             return Redirect("~/home/index");
         }
     }
