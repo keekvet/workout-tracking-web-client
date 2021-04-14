@@ -61,3 +61,7 @@ a {
 a:hover, .link-look:hover {
     color: darkslategrey;
 }
+
+.day-column{
+    min-height: 200px
+}

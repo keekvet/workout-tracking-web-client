@@ -37,9 +37,6 @@ namespace Workout_tracking_web_client.Controllers
         [HttpGet("all")]
         public async Task<IActionResult> TrainingList(TrainingTemplatePaginationModel model)
         {
-            IEnumerable<TrainingCategoryDto> trainingCategories = 
-                await trainingCategoryService.GetTrainingCategoriesAsync(httpClientService.NewInstance(token));
-
             RestRequest request = new RestRequest("training-template/all", Method.GET);
           
             foreach (var prop in model.GetType().GetProperties())
@@ -48,12 +45,6 @@ namespace Workout_tracking_web_client.Controllers
             IRestResponse<IEnumerable<TrainingTemplateDto>> response =
                 await httpClientService.NewInstance(token)
                 .ExecuteWithTimeoutExceptionAsync<IEnumerable<TrainingTemplateDto>>(request);
-
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            {
-                ViewData["Message"] = "training doesn't exist";
-                return View();
-            }
 
             return View(response.Data);
         }
@@ -66,12 +57,6 @@ namespace Workout_tracking_web_client.Controllers
             IRestResponse<TrainingTemplateDto> response =
                 await httpClientService.NewInstance(token)
                 .ExecuteWithTimeoutExceptionAsync<TrainingTemplateDto>(request);
-
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            {
-                ViewData["Message"] = "training doesn't exist";
-                return View();
-            }
 
             return View(response.Data);
         }
@@ -103,12 +88,6 @@ namespace Workout_tracking_web_client.Controllers
                 await httpClientService.NewInstance(token)
                 .ExecuteWithTimeoutExceptionAsync<TrainingTemplateDto>(request);
 
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            {
-                ViewBag.Message = "invalid data";
-                return View();
-            }
-
             return Redirect(response.Data.Id.ToString());
         }
 
@@ -120,12 +99,6 @@ namespace Workout_tracking_web_client.Controllers
             IRestResponse<TrainingTemplateDto> response =
                 await httpClientService.NewInstance(token)
                 .ExecuteWithTimeoutExceptionAsync<TrainingTemplateDto>(request);
-
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            {
-                ViewData["Message"] = "training doesn't exist";
-                return View();
-            }
 
             ViewBag.Categories = await trainingCategoryService.GetTrainingCategoriesAsync(
                 httpClientService.NewInstance(token));
@@ -162,12 +135,6 @@ namespace Workout_tracking_web_client.Controllers
             response = await httpClientService.NewInstance(token)
                 .ExecuteWithTimeoutExceptionAsync<TrainingTemplateDto>(request);
 
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            {
-                ViewData["Message"] = "invalid data";
-                return Redirect("update/" + model.Id );
-            }
-
             return Redirect("update/" + response.Data.Id);
 
         }
@@ -182,9 +149,6 @@ namespace Workout_tracking_web_client.Controllers
                 await httpClientService.NewInstance(token)
                 .ExecuteWithTimeoutExceptionAsync<bool>(request);
 
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-                ViewData["Message"] = "invalid data";
-
             return Redirect("~/training/all");
         }
 
@@ -198,12 +162,6 @@ namespace Workout_tracking_web_client.Controllers
             IRestResponse<TrainingTemplateDto> response =
                 await httpClientService.NewInstance(token)
                 .ExecuteWithTimeoutExceptionAsync<TrainingTemplateDto>(request);
-
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            {
-                ViewData["Message"] = "invalid data";
-                return View();
-            }
 
             return Redirect("~/training/all");
         }

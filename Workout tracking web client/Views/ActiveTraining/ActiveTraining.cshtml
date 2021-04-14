@@ -1,0 +1,43 @@
+﻿@model ActiveTrainingViewModel
+@{
+    bool lastExercise = Model.Exercise is null;
+}
+
+<div class="text-center">
+
+    <h1>@Model.TrainingTemplateName</h1>
+    <div>
+        @if (!lastExercise)
+        {
+            <span class="h3">@Model.ExerciseDonePosition. @Model.Exercise.Name</span>
+        }
+        else
+        {
+            <span class="h3">all exercises done</span>
+        }
+    </div>
+    @if (!lastExercise)
+    {
+        <table class="m-auto h5">
+            @foreach (var item in Model.Exercise.Properties)
+            {
+                <tr class="low-border">
+                    <td>
+                        <span>@item.Duration @item.DurationType</span>
+                        @if (item.Weight != 0)
+                        {
+                            <span> | weight @item.Weight</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    <div>
+        <a class="p-3 h3" asp-controller="active-training" asp-action="end-training">end training</a>
+        @if (!lastExercise)
+        {
+            <a class="p-3 h3" asp-controller="active-training" asp-action="exercise-done">exercise done</a>
+        }
+    </div>
+</div>

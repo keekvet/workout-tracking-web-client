@@ -51,12 +51,6 @@ namespace Workout_tracking_web_client.Controllers
                 await httpClientService.NewInstance(token)
                 .ExecuteWithTimeoutExceptionAsync<ExercisePropertyDto>(request);
 
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            {
-                ViewData["Message"] = "invalid data";
-                return View();
-            }
-
             return Redirect("~/training/update/" + model.TrainingTemplateId);
         }
 
@@ -70,9 +64,6 @@ namespace Workout_tracking_web_client.Controllers
                 await httpClientService.NewInstance(token)
                 .ExecuteWithTimeoutExceptionAsync<bool>(request);
 
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-                ViewData["Message"] = "invalid data";
-
             return Redirect("~/training/update/" + templateId);
         }
 
@@ -84,14 +75,7 @@ namespace Workout_tracking_web_client.Controllers
             IRestResponse<ExercisePropertyDto> response =
                 await httpClientService.NewInstance(token)
                 .ExecuteWithTimeoutExceptionAsync<ExercisePropertyDto>(request);
-
-
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            {
-                ViewData["Message"] = "invalid data";
-                return View();
-            }
-            
+     
             ExercisePropertyUpdateViewModel model =
                 mapper.Map<ExercisePropertyDto, ExercisePropertyUpdateViewModel>(response.Data);
 
@@ -113,12 +97,6 @@ namespace Workout_tracking_web_client.Controllers
             IRestResponse<ExercisePropertyDto> response =
                 await httpClientService.NewInstance(token)
                 .ExecuteWithTimeoutExceptionAsync<ExercisePropertyDto>(request);
-
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            {
-                ViewData["Message"] = "invalid data";
-                return View();
-            }
 
             return Redirect("~/training/update/" + model.TrainingTemplateId);
 

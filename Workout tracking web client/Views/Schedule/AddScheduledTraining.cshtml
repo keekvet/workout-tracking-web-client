@@ -1,0 +1,21 @@
+﻿@model ScheduledTrainingModel
+
+<div class="text-center">
+    <h1>add training to schedule</h1>
+
+    <form asp-controller="schedule" asp-action="add" method="post">
+        <input type="hidden" asp-for="TemplateId" />
+
+        select day<br />
+        <span asp-validation-for="Day"></span><br />
+        <select asp-for="Day" asp-items="@Html.GetEnumSelectList<DayOfWeek>()"></select><br />
+        <br />
+
+        time<br />
+        <span asp-validation-for="StartTime"></span><br />
+        <input asp-for="StartTime" placeholder="23:59"/><br />
+        <br />
+
+        <input type="submit" value="add"/>
+    </form>
+</div>

@@ -43,6 +43,9 @@
     </div>
     <div class="col-md-3 side-and-low-border text-center">
         <br />
+        <a class="h3 p-3" asp-controller="active-training"
+           asp-action="start" asp-route-id="@Model.Id">start training</a><br />
+        <br />
 
         <a class="h3 p-3" asp-controller="exercise"
            asp-action="add" asp-route-templateid="@Model.Id">add exercise</a><br />

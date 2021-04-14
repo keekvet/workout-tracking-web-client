@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ScheduledTrainingDto>
+@{
+    var days = Enum.GetValues<DayOfWeek>();
+
+    var daysWithTrainings =
+        days.GroupJoin(Model, d => d, m => m.Day, (day, trainings) => (day, trainings));
+
+    var rows = daysWithTrainings.GroupBy(d => (int)d.day < 4);
+
+}
+
+<div class="text-center m-3">
+    <h1>schedule</h1>
+
+    @foreach (var row in rows)
+    {
+        <div class="row h-auto">
+            @foreach (var day in row)
+            {
+                <div class="col-md day-column round-border m-3">
+                    <span class="h3">@Enum.GetName(day.day)</span>
+                    @if (day.trainings.Count() > 0)
+                    {
+                        @foreach (var training in day.trainings)
+                        {
+                            <div class="m-0 h5 low-border">
+
+                                <a asp-controller="training" asp-action="@training.Id">
+                                    @training.TemplateName.ToLower()</a><br />
+
+                                <span> @training.StartTime</span><br />
+
+                                <a asp-controller="schedule"
+                                   asp-action="delete" asp-route-id="@training.Id">remove</a><br />
+                                <br />
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="h-auto h5">
+                            <span class="align-middle">none</span>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    }
+
+</div>

@@ -21,23 +21,35 @@
     }
     else
     {
-        <header class="container-fluid low-border">
-            <table>
-                <tr>
-                    <td class="side-border h3 p-3">
-                        <a asp-controller="search" asp-action="search">search</a>
-                    </td>
-                    <td class="side-border h3 p-3">
-                        <a asp-controller="training" asp-action="all">training</a>
-                    </td>
-                </tr>
-                <a class="side-border h3 p-3 float-right mb-0" asp-controller="user" asp-action="@userName">@userName</a>
-            </table>
-        </header>
+    <header class="container-fluid low-border">
+        <nav class="navbar navbar-expand-lg p-0 m-0 ">
+            <button class="navbar-toggler p-0 h-100" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" value="menu">
+                <span class="h-100 side-border h3 link-look">menu</span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link h3" asp-controller="search" asp-action="search">search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link h3" asp-controller="training" asp-action="all">training</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link h3" asp-controller="schedule" asp-action="">schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link h3" asp-controller="active-training" asp-action="">active training</a>
+                    </li>
+                </ul>
+            </div>
+            <a class=" h3 p-3 float-right mb-0" asp-controller="user" asp-action="@userName">@userName</a>
+        </nav>
+    </header>
     }
 
 
-    <main class="container-fluid">
+    <main class="container-fluid p-0">
         @RenderBody()
     </main>
 
